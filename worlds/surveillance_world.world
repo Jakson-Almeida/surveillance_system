@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="surveillance_world">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Indoor environment -->
+    <include>
+      <uri>model://table</uri>
+      <name>table_1</name>
+      <pose>2 2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table</uri>
+      <name>table_2</name>
+      <pose>-2 2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table</uri>
+      <name>table_3</name>
+      <pose>2 -2 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table</uri>
+      <name>table_4</name>
+      <pose>-2 -2 0 0 0 0</pose>
+    </include>
+
+    <!-- Walls to create an indoor environment -->
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_north</name>
+      <pose>0 8 1.5 0 0 0</pose>
+      <size>16 0.2 3</size>
+    </include>
+
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_south</name>
+      <pose>0 -8 1.5 0 0 0</pose>
+      <size>16 0.2 3</size>
+    </include>
+
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_east</name>
+      <pose>8 0 1.5 0 0 1.5708</pose>
+      <size>16 0.2 3</size>
+    </include>
+
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_west</name>
+      <pose>-8 0 1.5 0 0 1.5708</pose>
+      <size>16 0.2 3</size>
+    </include>
+
+    <!-- Surveillance cameras mounted on walls -->
+    <include>
+      <uri>model://camera</uri>
+      <name>camera_1</name>
+      <pose>7 7 2 0 0 2.356</pose>
+    </include>
+
+    <include>
+      <uri>model://camera</uri>
+      <name>camera_2</name>
+      <pose>-7 7 2 0 0 -2.356</pose>
+    </include>
+
+    <include>
+      <uri>model://camera</uri>
+      <name>camera_3</name>
+      <pose>7 -7 2 0 0 -0.785</pose>
+    </include>
+
+    <include>
+      <uri>model://camera</uri>
+      <name>camera_4</name>
+      <pose>-7 -7 2 0 0 0.785</pose>
+    </include>
+
+    <!-- Lighting for better surveillance -->
+    <include>
+      <uri>model://light</uri>
+      <name>light_1</name>
+      <pose>0 0 4 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://light</uri>
+      <name>light_2</name>
+      <pose>4 4 4 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://light</uri>
+      <name>light_3</name>
+      <pose>-4 4 4 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://light</uri>
+      <name>light_4</name>
+      <pose>4 -4 4 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://light</uri>
+      <name>light_5</name>
+      <pose>-4 -4 4 0 0 0</pose>
+    </include>
+
+    <!-- Some objects for the robot to navigate around -->
+    <include>
+      <uri>model://box</uri>
+      <name>box_1</name>
+      <pose>3 0 0.5 0 0 0</pose>
+      <size>1 1 1</size>
+    </include>
+
+    <include>
+      <uri>model://box</uri>
+      <name>box_2</name>
+      <pose>-3 0 0.5 0 0 0</pose>
+      <size>1 1 1</size>
+    </include>
+
+    <include>
+      <uri>model://box</uri>
+      <name>box_3</name>
+      <pose>0 3 0.5 0 0 0</pose>
+      <size>1 1 1</size>
+    </include>
+
+    <include>
+      <uri>model://box</uri>
+      <name>box_4</name>
+      <pose>0 -3 0.5 0 0 0</pose>
+      <size>1 1 1</size>
+    </include>
+
+    <!-- Physics settings -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <gravity>0 0 -9.81</gravity>
+    </physics>
+
+    <!-- GUI settings -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>5 -5 3 0 0.785 0.785</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf> 

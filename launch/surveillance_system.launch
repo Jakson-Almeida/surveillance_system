@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Surveillance System Launch File -->
+  <!-- This launch file sets up a complete surveillance system with P3DX robot and cameras -->
+
+  <!-- Arguments -->
+  <arg name="world" default="$(find surveillance_system)/worlds/surveillance_world.world"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="robot_urdf" default="$(find p3dx_description)/urdf/pioneer3dx.urdf"/>
+
+  <!-- Set use_sim_time flag -->
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- Load robot description directly -->
+  <param name="robot_description" command="$(find xacro)/xacro $(arg robot_urdf)" />
+
+  <!-- Start joint_state_publisher and robot_state_publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+  </include>
+
+  <!-- Load P3DX robot in Gazebo -->
+  <include file="$(find p3dx_gazebo)/launch/p3dx.launch"/>
+
+  <!-- Launch surveillance camera nodes -->
+  <include file="$(find surveillance_system)/launch/cameras.launch"/>
+
+  <!-- Launch surveillance control system -->
+  <include file="$(find surveillance_system)/launch/surveillance_control.launch"/>
+
+</launch>

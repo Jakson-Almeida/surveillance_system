@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Surveillance Cameras Launch File -->
+  <!-- This launch file sets up cameras for the surveillance system -->
+
+  <!-- Camera parameters -->
+  <arg name="camera_name" default="surveillance_camera"/>
+  <arg name="camera_frame" default="camera_link"/>
+  <arg name="camera_topic" default="/camera/image_raw"/>
+  <arg name="camera_info_topic" default="/camera/camera_info"/>
+
+  <!-- Spawn surveillance camera on P3DX -->
+  <node name="spawn_camera" pkg="gazebo_ros" type="spawn_model" 
+        args="-file $(find surveillance_system)/models/surveillance_camera.urdf 
+              -urdf 
+              -model surveillance_camera 
+              -x 0.0 -y 0.0 -z 0.5
+              -R 0.0 -P 0.0 -Y 0.0"
+        output="screen"/>
+
+  <!-- Camera driver node -->
+  <node name="camera_driver" pkg="surveillance_system" type="camera_driver.py" output="screen">
+    <param name="camera_name" value="$(arg camera_name)"/>
+    <param name="camera_frame" value="$(arg camera_frame)"/>
+    <param name="camera_topic" value="$(arg camera_topic)"/>
+    <param name="camera_info_topic" value="$(arg camera_info_topic)"/>
+    <param name="frame_rate" value="30"/>
+    <param name="image_width" value="640"/>
+    <param name="image_height" value="480"/>
+  </node>
+
+  <!-- Image processing node -->
+  <node name="image_processor" pkg="surveillance_system" type="image_processor.py" output="screen">
+    <param name="input_topic" value="$(arg camera_topic)"/>
+    <param name="output_topic" value="/processed_image"/>
+    <param name="detection_enabled" value="true"/>
+    <param name="motion_detection" value="true"/>
+    <param name="face_detection" value="true"/>
+  </node>
+
+  <!-- Camera control node -->
+  <node name="camera_controller" pkg="surveillance_system" type="camera_controller.py" output="screen">
+    <param name="pan_speed" value="0.5"/>
+    <param name="tilt_speed" value="0.5"/>
+    <param name="zoom_speed" value="0.3"/>
+  </node>
+
+</launch> 

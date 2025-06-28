@@ -1,0 +1,105 @@
+# Patrol Points Configuration for Surveillance System
+# This file defines the patrol points that the P3DX robot will visit during surveillance
+
+patrol_points:
+  # Home position (starting point)
+  home:
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    yaw: 0.0
+    wait_time: 5.0
+
+  # Patrol point 1
+  point_1:
+    x: 5.0
+    y: 0.0
+    z: 0.0
+    yaw: 0.0
+    wait_time: 10.0
+
+  # Patrol point 2
+  point_2:
+    x: 5.0
+    y: 5.0
+    z: 0.0
+    yaw: 1.57
+    wait_time: 10.0
+
+  # Patrol point 3
+  point_3:
+    x: 0.0
+    y: 5.0
+    z: 0.0
+    yaw: 3.14
+    wait_time: 10.0
+
+  # Patrol point 4
+  point_4:
+    x: -5.0
+    y: 5.0
+    z: 0.0
+    yaw: 3.14
+    wait_time: 10.0
+
+  # Patrol point 5
+  point_5:
+    x: -5.0
+    y: 0.0
+    z: 0.0
+    yaw: -1.57
+    wait_time: 10.0
+
+  # Patrol point 6
+  point_6:
+    x: -5.0
+    y: -5.0
+    z: 0.0
+    yaw: -1.57
+    wait_time: 10.0
+
+  # Patrol point 7
+  point_7:
+    x: 0.0
+    y: -5.0
+    z: 0.0
+    yaw: 0.0
+    wait_time: 10.0
+
+  # Patrol point 8
+  point_8:
+    x: 5.0
+    y: -5.0
+    z: 0.0
+    yaw: 1.57
+    wait_time: 10.0
+
+# Patrol sequence (order of points to visit)
+patrol_sequence:
+  - home
+  - point_1
+  - point_2
+  - point_3
+  - point_4
+  - point_5
+  - point_6
+  - point_7
+  - point_8
+  - home
+
+# Patrol settings
+patrol_settings:
+  # Speed of robot during patrol (m/s)
+  robot_speed: 0.5
+  
+  # Distance tolerance for reaching patrol points (m)
+  goal_tolerance: 0.5
+  
+  # Maximum time to wait at each point (seconds)
+  max_wait_time: 15.0
+  
+  # Whether to enable random patrol (visits points in random order)
+  random_patrol: false
+  
+  # Number of patrol cycles before returning home
+  patrol_cycles: 3 

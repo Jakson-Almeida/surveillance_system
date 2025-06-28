@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Surveillance Control Launch File -->
+  <!-- This launch file sets up the main surveillance control system -->
+
+  <!-- Surveillance system parameters -->
+  <arg name="surveillance_mode" default="autonomous"/>
+  <arg name="patrol_enabled" default="true"/>
+  <arg name="alert_system" default="true"/>
+  <arg name="recording_enabled" default="true"/>
+
+  <!-- Set surveillance parameters -->
+  <param name="/surveillance_system/mode" value="$(arg surveillance_mode)"/>
+  <param name="/surveillance_system/patrol_enabled" value="$(arg patrol_enabled)"/>
+  <param name="/surveillance_system/alert_system" value="$(arg alert_system)"/>
+  <param name="/surveillance_system/recording_enabled" value="$(arg recording_enabled)"/>
+
+  <!-- Main surveillance controller -->
+  <node name="surveillance_controller" pkg="surveillance_system" type="surveillance_controller.py" output="screen">
+    <param name="robot_speed" value="0.5"/>
+    <param name="patrol_radius" value="10.0"/>
+    <param name="detection_threshold" value="0.7"/>
+    <param name="alert_cooldown" value="5.0"/>
+  </node>
+
+  <!-- Patrol system -->
+  <node name="patrol_system" pkg="surveillance_system" type="patrol_system.py" output="screen">
+    <param name="patrol_points_file" value="$(find surveillance_system)/config/patrol_points.yaml"/>
+    <param name="patrol_interval" value="30.0"/>
+    <param name="random_patrol" value="true"/>
+  </node>
+
+  <!-- Alert system -->
+  <node name="alert_system" pkg="surveillance_system" type="alert_system.py" output="screen">
+    <param name="alert_topic" value="/surveillance/alerts"/>
+    <param name="notification_enabled" value="true"/>
+    <param name="log_alerts" value="true"/>
+  </node>
+
+  <!-- Recording system -->
+  <node name="recording_system" pkg="surveillance_system" type="recording_system.py" output="screen">
+    <param name="record_topic" value="/processed_image"/>
+    <param name="output_directory" value="$(find surveillance_system)/recordings"/>
+    <param name="max_recording_time" value="3600"/>
+    <param name="compression_enabled" value="true"/>
+  </node>
+
+  <!-- Navigation system for autonomous movement -->
+  <node name="navigation_controller" pkg="surveillance_system" type="navigation_controller.py" output="screen">
+    <param name="goal_tolerance" value="0.5"/>
+    <param name="max_velocity" value="1.0"/>
+    <param name="obstacle_avoidance" value="true"/>
+  </node>
+
+  <!-- Status monitor -->
+  <node name="status_monitor" pkg="surveillance_system" type="status_monitor.py" output="screen">
+    <param name="monitor_interval" value="5.0"/>
+    <param name="battery_threshold" value="20.0"/>
+    <param name="system_health_check" value="true"/>
+  </node>
+
+</launch> 
