@@ -1,0 +1,16 @@
+<launch>
+  <!-- Launch Gazebo with the classroom world -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="world_file" default="$(find surveillance_system)/worlds/classroom.world"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+  </include>
+
+  <!-- Spawn the P3DX robot at the center of the classroom -->
+  <node name="spawn_p3dx" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-file $(find p3dx_description)/urdf/pioneer3dx.urdf -urdf -model p3dx -x 0 -y 0 -z 0.1" />
+</launch> 

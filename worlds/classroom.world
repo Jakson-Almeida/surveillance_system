@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="classroom">
+    <!-- Lighting -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Four walls -->
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_north</name>
+      <pose>0 5 1.5 0 0 0</pose>
+      <size>10 0.2 3</size>
+    </include>
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_south</name>
+      <pose>0 -5 1.5 0 0 0</pose>
+      <size>10 0.2 3</size>
+    </include>
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_east</name>
+      <pose>5 0 1.5 0 0 1.5708</pose>
+      <size>10 0.2 3</size>
+    </include>
+    <include>
+      <uri>model://wall</uri>
+      <name>wall_west</name>
+      <pose>-5 0 1.5 0 0 1.5708</pose>
+      <size>10 0.2 3</size>
+    </include>
+
+    <!-- Tables -->
+    <include>
+      <uri>model://table</uri>
+      <name>table_1</name>
+      <pose>-2 2 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_2</name>
+      <pose>2 2 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_3</name>
+      <pose>-2 -2 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_4</name>
+      <pose>2 -2 0 0 0 0</pose>
+    </include>
+
+    <!-- Chairs -->
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_1</name>
+      <pose>-2.5 2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_2</name>
+      <pose>-1.5 2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_3</name>
+      <pose>1.5 2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_4</name>
+      <pose>2.5 2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_5</name>
+      <pose>-2.5 -2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_6</name>
+      <pose>-1.5 -2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_7</name>
+      <pose>1.5 -2.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://chair</uri>
+      <name>chair_8</name>
+      <pose>2.5 -2.5 0 0 0 0</pose>
+    </include>
+
+    <!-- Place for P3DX robot at the center -->
+    <!-- The robot will be spawned by the launch file -->
+
+  </world>
+</sdf> 
